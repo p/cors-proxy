@@ -1,0 +1,7 @@
+#!/bin/sh
+
+set -e
+
+mkdir -p tmp
+CGO_ENABLED=0 GOOS=linux go build -o tmp/cors-proxy.docker *.go
+docker build -t cors-proxy .
