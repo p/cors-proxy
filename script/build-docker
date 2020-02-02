@@ -4,4 +4,7 @@ set -e
 
 mkdir -p tmp
 CGO_ENABLED=0 GOOS=linux go build -o tmp/cors-proxy.docker *.go
+rm -rf tmp/certs
+mkdir tmp/certs
+find /usr/share/ca-certificates/ -type f -exec cp {} tmp/certs \;
 docker build -t cors-proxy .
