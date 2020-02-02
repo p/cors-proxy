@@ -82,6 +82,7 @@ func main() {
   // logger and recovery (crash-free) middleware
   router := gin.Default()
 
+  // https://stackoverflow.com/questions/32443738/setting-up-route-not-found-in-gin
   router.NoRoute(proxy_route)
 
   // By default it serves on :8080 unless a
@@ -101,3 +102,6 @@ func main() {
   // router.Run(":3000") for a hard coded port
 
 }
+
+// TODO: stream responses. See:
+// https://stackoverflow.com/questions/44825244/how-to-write-a-stream-api-using-gin-gonic-server-in-golang-tried-c-stream-didnt
