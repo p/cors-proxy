@@ -2,4 +2,5 @@
 FROM scratch
 ADD tmp/cors-proxy.docker /cors-proxy.docker
 ENV PORT 80
+EXPOSE 80
 CMD ["/cors-proxy.docker"]
