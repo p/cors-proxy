@@ -58,6 +58,7 @@ func proxy_route(c *gin.Context) {
     return_500(c, "cors-proxy: problem reading response: ", err)
     return
   }
+  set_cors_headers(c)
   c.String(resp.StatusCode, string(body))
 }
 
