@@ -7,14 +7,14 @@ import (
   "fmt"
   "os"
   //"regexp"
-  "strconv"
   "io/ioutil"
+  "strconv"
 
   "github.com/gin-gonic/gin"
   log "github.com/sirupsen/logrus"
 
   //"time"
-"net/http"
+  "net/http"
 )
 
 var debug bool
@@ -40,25 +40,25 @@ func return_500(c *gin.Context, msg string, err error) {
   }
 }
 
-func proxy_route(c *gin.Context){
-url:=c.Query("url")
-if url==""{
+func proxy_route(c *gin.Context) {
+  url := c.Query("url")
+  if url == "" {
     c.String(400, "cors-proxy: url parameter missing")
     return
-}
+  }
 
-    resp, err := http.Get(url)
+  resp, err := http.Get(url)
   if err != nil {
     return_500(c, "cors-proxy: problem making request: ", err)
     return
   }
-    defer resp.Body.Close()
-    body, err := ioutil.ReadAll(resp.Body)
-    if err != nil {
+  defer resp.Body.Close()
+  body, err := ioutil.ReadAll(resp.Body)
+  if err != nil {
     return_500(c, "cors-proxy: problem reading response: ", err)
     return
-    }
-    c.String(resp.StatusCode,string(body))
+  }
+  c.String(resp.StatusCode, string(body))
 }
 
 func main() {
@@ -80,7 +80,7 @@ func main() {
   // Creates a gin router with default middleware:
   // logger and recovery (crash-free) middleware
   router := gin.Default()
-  
+
   router.NoRoute(proxy_route)
 
   // By default it serves on :8080 unless a
