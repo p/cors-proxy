@@ -1,0 +1,7 @@
+#!/bin/sh
+
+set -e
+
+GOPATH=$HOME/go
+
+env DEBUG=1 ${GOPATH}/bin/gin --build . --port 8099 --bin tmp/gin-bin run *.go
